@@ -1,0 +1,44 @@
+Source: smlsharp
+Section: devel
+Priority: optional
+Maintainer: Katsuhiro Ueno <katsu@riec.tohoku.ac.jp>
+Build-Depends: debhelper (>=13), xz-utils, llvm-11-dev, libgmp-dev, massivethreads-dev
+Standards-Version: 4.5.1
+Homepage: http://www.pllab.riec.tohoku.ac.jp/smlsharp/
+
+Package: smlsharp
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}, gcc, llvm-11, libc-dev, libgmp-dev, massivethreads-dev
+Recommends: g++, smllex, smlyacc, smlformat
+Description: Standard ML compiler with practical extensions
+ SML# is a variant of Standard ML programming language
+ equipped with practical features including seamless
+ interoperability with C, integration with SQL, native
+ multithread support, and separate compilation.
+
+Package: smlformat
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Pretty printer generator for SML#
+ SML# is a variant of Standard ML programming language
+ equipped with practical features including seamless
+ interoperability with C, integration with SQL, native
+ multithread support, and separate compilation.
+
+Package: smllex
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Lexical analyzer generator for SML#
+ SML# is a variant of Standard ML programming language
+ equipped with practical features including seamless
+ interoperability with C, integration with SQL, native
+ multithread support, and separate compilation.
+
+Package: smlyacc
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Parser generator for SML#
+ SML# is a variant of Standard ML programming language
+ equipped with practical features including seamless
+ interoperability with C, integration with SQL, native
+ multithread support, and separate compilation.

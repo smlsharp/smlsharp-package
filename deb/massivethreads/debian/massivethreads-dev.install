@@ -1,0 +1,6 @@
+/usr/include/mtbb/*
+/usr/include/myth.h
+/usr/include/myth/*
+/usr/include/tpswitch/*
+/usr/lib/*/libmyth.so
+/usr/lib/*/libmyth.a

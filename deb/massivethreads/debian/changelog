@@ -1,0 +1,28 @@
+massivethreads (1.00-2) unstable; urgency=low
+
+  * massivethreads-dr: remove drview since it depends on python2 and its
+    libraries.
+
+ -- Katsuhiro Ueno <katsu@riec.tohoku.ac.jp>  Sun,  3 Jan 2021 08:33:14 +0900
+
+massivethreads (1.00-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Katsuhiro Ueno <katsu@riec.tohoku.ac.jp>  Fri, 20 Dec 2019 10:42:37 +0900
+
+massivethreads (0.99-2) unstable; urgency=low
+
+  * Renamed packages following Debian Policy.
+  * Provide massivethreads-doc packages.
+  * Separate DAG recorder to massivethreads-dr package from main packages.
+  * Add Section for the source package.
+  * Add stub man pages for dag2any and drview.
+
+ -- Katsuhiro Ueno <katsu@riec.tohoku.ac.jp>  Thu, 18 Apr 2019 09:21:15 +0900
+
+massivethreads (0.99-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Katsuhiro Ueno <katsu@riec.tohoku.ac.jp>  Thu, 15 Jun 2017 11:32:01 +0900

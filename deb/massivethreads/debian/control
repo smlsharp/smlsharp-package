@@ -1,0 +1,90 @@
+Source: massivethreads
+Section: libs
+Priority: optional
+Maintainer: Katsuhiro Ueno <katsu@riec.tohoku.ac.jp>
+Build-Depends: debhelper (>=13), libsqlite3-dev
+Standards-Version: 4.5.1
+Homepage: https://github.com/massivethreads/massivethreads
+
+Package: massivethreads
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Lightweight thread library for high productivity languages
+ MassiveThreads is a user-level thread library that can create
+ a massive number of threads significantly faster than native
+ operating system threads.
+
+Package: massivethreads-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends}, massivethreads (= ${binary:Version})
+Suggests: massivethreads-doc
+Description: Development files of the MassiveThreads library
+ MassiveThreads is a user-level thread library that can create
+ a massive number of threads significantly faster than native
+ operating system threads.
+ This package provides the header files and library files needed for
+ compiling software using massivethreads.
+
+Package: massivethreads-ld
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Static Pthread wrapper of the MassiveThreads library
+ MassiveThreads is a user-level thread library that can create
+ a massive number of threads significantly faster than native
+ operating system threads.
+ This package provides libmyth-ld, the static Pthread wrapper.
+
+Package: massivethreads-ld-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends}, massivethreads-ld (= ${binary:Version})
+Description: Development files of the MassiveThreads library
+ MassiveThreads is a user-level thread library that can create
+ a massive number of threads significantly faster than native
+ operating system threads.
+ This package provides development files related to libmyth-ld.
+
+Package: massivethreads-dl
+Section: devel
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Dynamic Pthread wrapper of the MassiveThreads library
+ MassiveThreads is a user-level thread library that can create
+ a massive number of threads significantly faster than native
+ operating system threads.
+ This package provides libmyth-dl, the dynamic Pthread wrapper.
+
+Package: massivethreads-dr
+Section: devel
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: DAG recorder of the MassiveThreads library
+ MassiveThreads is a user-level thread library that can create
+ a massive number of threads significantly faster than native
+ operating system threads.
+ This package provides DAG recorder, which is a tool to analyze execution
+ of task parallel programs.
+
+Package: massivethreads-dr-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends}, massivethreads-dr (= ${binary:Version})
+Suggests: gnuplot, graphviz
+Description: Development files of the MassiveThreads DAG recorder library
+ MassiveThreads is a user-level thread library that can create
+ a massive number of threads significantly faster than native
+ operating system threads.
+ This package provides development files and tools related to libdr.
+
+Package: massivethreads-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Description: Library documentation of the MassiveThreads library
+ MassiveThreads is a user-level thread library that can create
+ a massive number of threads significantly faster than native
+ operating system threads.
+ This package provides the API documentation.

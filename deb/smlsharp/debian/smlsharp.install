@@ -1,0 +1,8 @@
+/usr/bin/smlsharp
+/usr/lib/*/smlsharp
+/usr/share/man/man1/smlsharp.1
+src/smlnj/LICENSE /usr/share/doc/smlsharp/smlnj
+src/smlnj-lib/CHANGES /usr/share/doc/smlsharp/smlnj-lib
+src/smlnj-lib/LICENSE /usr/share/doc/smlsharp/smlnj-lib
+src/smlnj-lib/README /usr/share/doc/smlsharp/smlnj-lib
+src/runtime/netlib/dtoa.c /usr/share/doc/smlsharp/netlib
