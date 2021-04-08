@@ -438,17 +438,23 @@ $$(BUILD)/smlsharp-$$(SMLVERSION)_$1.tar: \
 endef
 $(foreach i,$(RPMDISTS),$(eval $(call Rule,$i)))
 
+SMLSHARP_RB_AWK = '\
+  {print}\
+  /^ *system ".\/configure"/\
+  {print "system \"make\", \"src/config/main/Version.sml\" \#\#D\#\#";\
+   print "inreplace \"src/config/main/Version.sml\", \#\#D\#\#";\
+   print " HOMEBREW_PREFIX, \"/usr/local\" \#\#D\#\#"}\
+  /^ *system \"make\", \"all\"/\
+  {print "inreplace \"src/config.mk\", \#\#D\#\#";\
+   print " HOMEBREW_PREFIX, \"/usr/local\" \#\#D\#\#";\
+   print "system \"make\", \"-t\" \#\#D\#\#"}\
+'
+
 $(BUILD)/smlsharp-$(SMLVERSION).rb: \
   smlsharp-$(SMLVERSION).tar.gz \
   homebrew/smlsharp.rb \
 | $(BUILD)/
-	awk -v L1='system "make","src/config/main/Version.sml" ##D##' \
-	    -v L2='inreplace "src/config/main/Version.sml",' \
-	    -v L3=' HOMEBREW_PREFIX, "/usr/local" ##D##' \
-	    -v L4='opt_llvm_bin =' \
-	    -v L5=' opt_llvm_bin.sub HOMEBREW_PREFIX, "/usr/local" ##D##' \
-	    '{print}/^ *system ".\/configure"/{print L1"\n"L2""L3"\n"L4""L5}' \
-	homebrew/smlsharp.rb > $@
+	awk $(SMLSHARP_RB_AWK) homebrew/smlsharp.rb > $@
 	sed -i '' '/test do/,/end/s/^/##K##/' $@
 	sed -i '' 's/0.0.0-pre0/$(SMLVERSION)/g' $@
 	$(SHA256); \
