@@ -1,6 +1,6 @@
 class Smlsharp < Formula
   desc "Standard ML compiler with practical extensions"
-  homepage "http://www.pllab.riec.tohoku.ac.jp/smlsharp/"
+  homepage "https://smlsharp.github.io/"
   url "https://github.com/smlsharp/smlsharp/releases/download/v0.0.0-pre0/smlsharp-0.0.0-pre0.tar.gz"
   sha256 "0000000000000000000000000000000000000000000000000000000000000000"
   version "0.0.0-pre0"
