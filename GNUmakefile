@@ -468,7 +468,7 @@ $(BUILD)/smlsharp-$(SMLVERSION)_homebrew.tar: \
 	rbfile=$(BUILD)/smlsharp-$(SMLVERSION).rb \
 	source=$< \
 	no_cellar_any=yes \
-	homebrew/build.sh gmp xz llvm@9 massivethreads: > $@
+	homebrew/build.sh gmp xz llvm@11 massivethreads: > $@
 
 
 #################
