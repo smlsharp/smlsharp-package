@@ -6,16 +6,24 @@ class Smlsharp < Formula
   version "0.0.0-pre0"
   license "MIT"
 
-  depends_on "llvm@11"
+  depends_on "llvm@12"
   depends_on "massivethreads"
   depends_on "gmp"
   depends_on "xz" => :build
 
   def install
-    opt_llvm = Formula["llvm@11"].opt_prefix
+    opt_llvm = Formula["llvm@12"].opt_prefix.sub(/llvm\z/, "llvm@12")
+    opt_llvm_bin = opt_llvm/"bin"
     system "./configure", "--prefix=#{prefix}", "--with-llvm=#{opt_llvm}"
     system "make", "stage"
     system "make", "all"
+    inreplace "src/config.mk" do |s|
+      s.sub! /^LLC =.*$/, "LLC = #{opt_llvm_bin}/llc"
+      s.sub! /^OPT =.*$/, "OPT = #{opt_llvm_bin}/opt"
+      s.sub! /^LLVM_AS =.*$/, "LLVM_AS = #{opt_llvm_bin}/llvm-as"
+      s.sub! /^LLVM_DIS =.*$/, "LLVM_DIS = #{opt_llvm_bin}/llvm-dis"
+    end
+    system "make", "-t"
     system "make", "install"
   end
 

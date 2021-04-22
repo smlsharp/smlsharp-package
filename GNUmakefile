@@ -443,11 +443,9 @@ SMLSHARP_RB_AWK = '\
   /^ *system ".\/configure"/\
   {print "system \"make\", \"src/config/main/Version.sml\" \#\#D\#\#";\
    print "inreplace \"src/config/main/Version.sml\", \#\#D\#\#";\
-   print " HOMEBREW_PREFIX, \"/usr/local\" \#\#D\#\#"}\
-  /^ *system \"make\", \"all\"/\
-  {print "inreplace \"src/config.mk\", \#\#D\#\#";\
    print " HOMEBREW_PREFIX, \"/usr/local\" \#\#D\#\#";\
-   print "system \"make\", \"-t\" \#\#D\#\#"}\
+   print "opt_llvm_bin = \#\#D\#\#"; \
+   print " opt_llvm_bin.sub HOMEBREW_PREFIX, \"/usr/local\" \#\#D\#\#"}\
 '
 
 $(BUILD)/smlsharp-$(SMLVERSION).rb: \
@@ -474,7 +472,7 @@ $(BUILD)/smlsharp-$(SMLVERSION)_homebrew.tar: \
 	rbfile=$(BUILD)/smlsharp-$(SMLVERSION).rb \
 	source=$< \
 	no_cellar_any=yes \
-	homebrew/build.sh gmp xz llvm@11 massivethreads: > $@
+	homebrew/build.sh gmp xz llvm@12 massivethreads: > $@
 
 
 #################
