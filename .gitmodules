@@ -1,0 +1,3 @@
+[submodule "homebrew-smlsharp"]
+	path = homebrew-smlsharp
+	url = https://github.com/smlsharp/homebrew-smlsharp.git
