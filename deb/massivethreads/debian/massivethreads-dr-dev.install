@@ -1,6 +1,0 @@
-/usr/include/dag_recorder.h
-/usr/include/dag_recorder_impl.h
-/usr/include/dag_recorder_inl.h
-/usr/include/papi_counters.h
-/usr/lib/*/libdr.so
-/usr/lib/*/libdr.a

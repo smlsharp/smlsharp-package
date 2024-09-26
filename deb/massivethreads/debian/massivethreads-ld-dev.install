@@ -1,3 +1,0 @@
-/usr/lib/*/libmyth-ld.so
-/usr/lib/*/libmyth-ld.a
-src/myth-ld.opts /usr/share/massivethreads
