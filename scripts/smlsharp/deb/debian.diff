@@ -1,0 +1,99 @@
+diff -ruN debian.orig/control debian/control
+--- debian.orig/control	2022-08-04 15:19:35.000000000 +0900
++++ debian/control	2024-09-24 04:26:53.703535346 +0900
+@@ -4,7 +4,7 @@
+ Maintainer: Nobuhiro Iwamatsu <iwamatsu@debian.org>
+ Build-Depends: debhelper-compat (= 13),
+                libgmp-dev,
+-               llvm-dev,
++               llvm-18-dev,
+                libmassivethreads-dev
+ Standards-Version: 4.5.1
+ Rules-Requires-Root: no
+@@ -14,7 +14,8 @@
+ 
+ Package: smlsharp
+ Architecture: amd64
+-Depends: ${shlibs:Depends}, ${misc:Depends}
++Depends: ${shlibs:Depends}, ${misc:Depends},
++         gcc, llvm-18, libc-dev, libgmp-dev, libmassivethreads-dev
+ Description: Standard ML compiler with practical extensions
+  SML# is a variant of Standard ML programming
+  language with several practical extentions,
+diff -ruN debian.orig/docs debian/docs
+--- debian.orig/docs	2022-08-04 15:19:35.000000000 +0900
++++ debian/docs	2024-09-24 05:16:35.990066540 +0900
+@@ -0,0 +1,2 @@
++README.md
++LICENSE
+diff -ruN debian.orig/install debian/install
+--- debian.orig/install	1970-01-01 09:00:00.000000000 +0900
++++ debian/install	2024-09-24 05:16:10.585940618 +0900
+@@ -0,0 +1,10 @@
++src/smlformat/README.txt usr/share/doc/smlsharp/smlformat
++src/smlformat/doc/OVERVIEW_en.txt usr/share/doc/smlsharp/smlformat
++src/smlformat/doc/OVERVIEW_ja.txt usr/share/doc/smlsharp/smlformat
++src/smlformat/doc/PPAlgorithm.txt usr/share/doc/smlsharp/smlformat
++src/smlformat/doc/SimpleTreePP.sml usr/share/doc/smlsharp/smlformat
++src/ml-lex/README usr/share/doc/smlsharp/smllex
++src/ml-lex/README.smlsharp usr/share/doc/smlsharp/smllex
++src/ml-yacc/COPYRIGHT usr/share/doc/smlsharp/smlyacc
++src/ml-yacc/README usr/share/doc/smlsharp/smlyacc
++src/ml-yacc/README.smlsharp usr/share/doc/smlsharp/smlyacc
+diff -ruN debian.orig/patches/0001-Add-support-LLVM-14.0.patch debian/patches/0001-Add-support-LLVM-14.0.patch
+--- debian.orig/patches/0001-Add-support-LLVM-14.0.patch	2022-08-04 15:19:35.000000000 +0900
++++ debian/patches/0001-Add-support-LLVM-14.0.patch	1970-01-01 09:00:00.000000000 +0900
+@@ -1,23 +0,0 @@
+-From 67f3dcb582366ea4344dc579196b5fa6a3e3274b Mon Sep 17 00:00:00 2001
+-From: Nobuhiro Iwamatsu <iwamatsu@debian.org>
+-Date: Thu, 4 Aug 2022 14:47:11 +0900
+-Subject: [PATCH] Add support LLVM 14.0
+-
+-Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@debian.org>
+----
+- configure | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/configure.ac b/configure.ac
+-index b4f830d..499d31a 100644
+---- a/configure.ac
+-+++ b/configure.ac
+-@@ -218,7 +218,7 @@ AC_MSG_CHECKING([for LLVM compatibility])
+- LLVM_VERSION=`echo "$LLVM_VERSION" | sed 's/\.[[0-9]]*$//'`
+- AC_SUBST(LLVM_VERSION)
+- case "$LLVM_VERSION" in
+--  3.9|[[4-9]].0|1[[0-1]].0|11.1|12.0|13.0)
+-+  3.9|[[4-9]].0|1[[0-1]].0|11.1|12.0|13.0|14.0)
+-     AC_MSG_RESULT(yes)
+-     ;;
+-   *)
+diff -ruN debian.orig/patches/series debian/patches/series
+--- debian.orig/patches/series	2022-08-04 15:19:35.000000000 +0900
++++ debian/patches/series	1970-01-01 09:00:00.000000000 +0900
+@@ -1 +0,0 @@
+-0001-Add-support-LLVM-14.0.patch
+diff -ruN debian.orig/rules debian/rules
+--- debian.orig/rules	2022-08-04 15:19:35.000000000 +0900
++++ debian/rules	2024-09-24 04:26:53.703535346 +0900
+@@ -10,9 +10,10 @@
+ %:
+ 	dh $@
+ 
++override_dh_autoreconf:
++
+ override_dh_auto_configure:
+-	CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
+-	./configure --prefix=/usr
++	dh_auto_configure -- --with-llvm=/usr/lib/llvm-18
+ 
+ override_dh_auto_build:
+ 	dh_auto_build -- stage
+diff -ruN debian.orig/smlsharp.manpages debian/smlsharp.manpages
+--- debian.orig/smlsharp.manpages	2022-08-04 15:19:35.000000000 +0900
++++ debian/smlsharp.manpages	2024-09-24 05:20:30.250980157 +0900
+@@ -1 +1,4 @@
+-debian/smlsharp.1
++man/smlformat.1
++man/smllex.1
++man/smlsharp.1
++man/smlyacc.1

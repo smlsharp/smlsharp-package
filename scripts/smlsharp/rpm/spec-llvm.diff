@@ -1,0 +1,24 @@
+--- smlsharp.spec.orig	2024-09-25 22:35:09.443886701 +0900
++++ smlsharp.spec	2024-09-25 23:44:44.384159271 +0900
+@@ -8,10 +8,10 @@
+ Group: Development/Languages
+ ExclusiveArch: x86_64
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-BuildRequires: llvm18-devel
++BuildRequires: llvm-devel >= 17, llvm-devel < 18
+ BuildRequires: massivethreads-devel
+ BuildRequires: gmp-devel
+-Requires: llvm18
++Requires: llvm >= 17, llvm < 18
+ Requires: massivethreads-devel
+ Requires: gmp-devel
+ Requires: gcc
+@@ -54,7 +54,7 @@
+ 
+ %build
+ set -ex
+-%configure --with-llvm=/usr/lib64/llvm18
++%configure
+ make %{?_smp_mflags} stage
+ make %{?_smp_mflags} all
+ 
