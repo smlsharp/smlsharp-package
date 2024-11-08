@@ -10,20 +10,19 @@ test -n "$OS_VERSION"
 test -n "$OS_ARCH"
 
 #### expand source package
-SRCDIR="massivethreads-${MVTH_BASE_VERSION%-*}"
+VERSION=${MVTH_FULL_VERSION%-*}
+SRCDIR="massivethreads-$VERSION"
 DEBDIR="$SRCDIR/debian"
-tar -xf "/build/massivethreads_$MVTH_BASE_VERSION.deb-src.tar"
-dpkg-source -x "massivethreads_$MVTH_BASE_VERSION.dsc"
-rm -f "massivethreads_$MVTH_BASE_VERSION.debian.tar.xz"
-rm -f "massivethreads_$MVTH_BASE_VERSION.dsc"
+tar -xf "/build/massivethreads-$VERSION.tar.gz"
+cp "/build/massivethreads-$VERSION.tar.gz" "massivethreads_$VERSION.orig.tar.gz"
+tar -C /tmp -xf "/build/massivethreads_$MVTH_BASE_VERSION.deb-src.tar"
+tar -C "$SRCDIR" -Jxf "/tmp/massivethreads_$MVTH_BASE_VERSION.debian.tar.xz"
 
 #### apply patches
 (
   cd "$SRCDIR"
   patch -p0 < /scripts/massivethreads/deb/debian.diff
   patch -p0 < /scripts/massivethreads/deb/debian-changelog.diff
-  cp /scripts/massivethreads/patches/* debian/patches
-  for i in /scripts/massivethreads/patches/*; do patch -p1 < "$i"; done
 )
 
 #### downgrade debhelper-compat if necessary

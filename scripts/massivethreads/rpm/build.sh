@@ -15,7 +15,6 @@ cd rpmbuild
 cp /scripts/massivethreads/rpm/massivethreads.spec SPECS
 cp "/build/massivethreads-$MVTH_VERSION.tar.gz" SOURCES/v${MVTH_VERSION}.tar.gz
 cp /scripts/massivethreads/rpm/massivethreads-1.00-manpages.patch SOURCES
-cp /scripts/massivethreads/patches/* SOURCES
 
 #### build packages
 rpmbuild -v -ba SPECS/massivethreads.spec

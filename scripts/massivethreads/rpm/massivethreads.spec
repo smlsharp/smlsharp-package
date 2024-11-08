@@ -1,14 +1,11 @@
 Name: massivethreads
-Version: 1.00
-Release: 3%{?dist}
+Version: 1.02
+Release: 0%{?dist}
 Summary: A lightweight thread library for high productivity languages
 License: BSD-2-Clause
 URL: https://github.com/massivethreads/massivethreads
-Source0: https://github.com/massivethreads/massivethreads/archive/v1.00.tar.gz
+Source0: https://github.com/massivethreads/massivethreads/archive/v1.02.tar.gz
 Patch0: massivethreads-1.00-manpages.patch
-Patch1: glibc-pthread-yield.patch
-Patch2: myth_wrap_malloc-memalign-pvalloc.patch
-Patch3: skip-tests-memalign-pvalloc.patch
 Group: Development/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: sqlite-devel
@@ -79,11 +76,8 @@ BuildArch: noarch
 This package contains Users' guide for the MassiveThreads library.
 
 %prep
-%setup -q -n %{name}-1.00
+%setup -q -n %{name}-1.02
 %patch -P 0 -p1
-%patch -P 1 -p1
-%patch -P 2 -p1
-%patch -P 3 -p1
 sed -i 's|^#!/usr/bin/python|#!/usr/bin/python2|' src/profiler/drview/drview
 mkdir doc
 tar -cf - \
@@ -192,6 +186,9 @@ cp -p dag2any.1 drview.1 $RPM_BUILD_ROOT/%{_mandir}/man1
 %{_libdir}/libdr.so
 
 %changelog
+* Fri Nov  8 2024 Katsuhiro Ueno <katsu@ie.niigata-u.ac.jp> - 1.02-0
+- new upstream version
+
 * Wed Sep 25 2024 Katsuhiro Ueno <katsu@ie.niigata-u.ac.jp> - 1.00-3
 - skip tests related to memalign and pvalloc.
 - stop dealing with pthread_yield on glibc 2.34.

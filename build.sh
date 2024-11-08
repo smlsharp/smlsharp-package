@@ -139,9 +139,13 @@ fetch_smlsharp_deb () {
 
 build_massivethreads_deb () {
   MVTH_BASE_VERSION="$MVTH_DEBVERSION"
-  MVTH_FULL_VERSION="$MVTH_DEBVERSION$DEB_SUFFIX"
+  MVTH_FULL_VERSION=$( \
+    sed '/^+massivethreads /!d;s/^.*(//;s/).*$//;q' \
+        "$BASE/scripts/massivethreads/deb/debian-changelog.diff" \
+  )${DEB_SUFFIX#v1}
   if [ ! -f "$BUILD/massivethreads-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" ]; then
     if need_build massivethreads; then
+      fetch_massivethreads_src
       fetch_massivethreads_deb
       :
       : "**** Build MassiveThreads on $OS_NAME $OS_VERSION ****"

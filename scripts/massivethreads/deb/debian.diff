@@ -1,20 +1,19 @@
---- debian/patches/series.orig	2022-07-08 08:32:45.000000000 +0900
-+++ debian/patches/series	2024-09-22 19:00:53.178918432 +0900
-@@ -3,3 +3,6 @@
- 0003-Prevent-myth_get_current_env-from-being-inlined-on-a.patch
+diff -ruN debian.orig/patches/series debian/patches/series
+--- debian.orig/patches/series	2022-01-09 13:38:14.000000000 +0900
++++ debian/patches/series	2024-11-09 01:03:27.497595436 +0900
+@@ -1,5 +1,2 @@
+-0001-Add-initial-support-for-aarch64-linux-and-macOS.patch
+-0002-Add-_sync_synchronize-to-avoid-assertion-failure.patch
+-0003-Prevent-myth_get_current_env-from-being-inlined-on-a.patch
  0004-tests-Fix-build-on-x86_32.patch
  0005-Add-support-sparc64.patch
-+glibc-pthread-yield.patch
-+myth_wrap_malloc-memalign-pvalloc.patch
-+skip-tests-memalign-pvalloc.patch
---- debian/rules.orig	2022-01-09 13:38:14.000000000 +0900
-+++ debian/rules	2024-09-22 00:49:22.917649506 +0900
-@@ -6,3 +6,9 @@
+diff -ruN debian.orig/rules debian/rules
+--- debian.orig/rules	2022-01-09 13:38:14.000000000 +0900
++++ debian/rules	2024-11-09 01:03:50.609697744 +0900
+@@ -6,3 +6,7 @@
  override_dh_auto_install:
  	dh_auto_install
  	rm $(CURDIR)/debian/tmp/usr/bin/*
-+
-+override_dh_autoreconf:
 +
 +override_dh_auto_test:
 +	dh_auto_build -- -C tests build
