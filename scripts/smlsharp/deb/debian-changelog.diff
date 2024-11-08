@@ -1,7 +1,7 @@
 --- debian/changelog.orig	2022-08-04 15:19:35.000000000 +0900
 +++ debian/changelog	2024-09-23 09:16:23.563890771 +0900
 @@ -1,3 +1,13 @@
-+smlsharp (4.0.0-0v1) unstable; urgency=medium
++smlsharp (4.1.0-0v1) unstable; urgency=medium
 +
 +  * New upstream release.
 +  * Remove debian/patches/0001-Add-support-LLVM-14.0.patch.
@@ -9,7 +9,7 @@
 +  * debian/control: Add required dependencies for smlsharp to run.
 +  * Install documents and manpages.
 +
-+ -- Katsuhiro Ueno <katsu@ie.niigata-u.ac.jp>  Mon, 23 Sep 2024 09:15:53 +0900
++ -- Katsuhiro Ueno <katsu@ie.niigata-u.ac.jp>  Fri, 08 Nov 2024 22:35:18 +0900
 +
  smlsharp (4.0.0+git20211227.5af5945b-2) unstable; urgency=medium
  
