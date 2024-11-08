@@ -65,7 +65,7 @@ rm "$BASE/scripts/smlsharp/rpm/smlsharp.spec.orig"
 #### update Homebrew formula
 sed -e '/^  url /s|".*"|"'"$RELEASE_URL"'"|' \
     -e '/^  sha256 /s|".*"|"'"$RELEASE_SHA256"'"|' \
-    -e '/^  version /s|".*"|'"$RELEASE_VERSION"'"|' \
+    -e '/^  version /s|".*"|"'"$RELEASE_VERSION"'"|' \
     -e '/^  revision /d' \
     -e '/^  bottle do/,/^ *$/d' \
     -i.orig "$BASE/homebrew-smlsharp/Formula/smlsharp.rb"
