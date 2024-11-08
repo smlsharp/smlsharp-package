@@ -13,8 +13,12 @@ apt-get update
 apt-get source smlsharp
 
 #### check the version number
-test -f "smlsharp_$SMLSHARP_BASE_VERSION.debian.tar.xz"
+test -f "smlsharp_${SMLSHARP_BASE_VERSION%-*}.orig.tar.gz"
+test -f "smlsharp_${SMLSHARP_BASE_VERSION}.dsc"
+test -f "smlsharp_${SMLSHARP_BASE_VERSION}.debian.tar.xz"
 
 #### output the result
 tar -cf "/build/smlsharp_$SMLSHARP_BASE_VERSION.deb-src.tar" \
-    "smlsharp_$SMLSHARP_BASE_VERSION.debian.tar.xz"
+    "smlsharp_${SMLSHARP_BASE_VERSION%-*}.orig.tar.gz" \
+    "smlsharp_${SMLSHARP_BASE_VERSION}.dsc" \
+    "smlsharp_${SMLSHARP_BASE_VERSION}.debian.tar.xz"
