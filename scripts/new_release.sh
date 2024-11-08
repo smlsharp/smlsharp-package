@@ -41,12 +41,13 @@ RPM_DATE=$( \
   LANG=C perl -mTime::Piece -e '
     @a = split(/ /, $ARGV[0], 3);
     $t = Time::Piece->strptime("$a[0] $a[1]", "%Y-%m-%d %H:%M:%S");
-    print $t->strftime("%a %b %d %Y");
+    print $t->strftime("%a %b %e %Y");
   ' "$RELEASE_DATE" \
 )
 RPM_MAINTAINER=$( \
-  sed -e '1,/^%changelog$/d' \
-      -e 's/^\* [^ ]* [^ ]* [^ ]* [^ ]* //;s/ - .*$//' \
+  sed -E \
+      -e '1,/^%changelog$/d' \
+      -e 's/^\* +[^ ]+ +[^ ]+ +[^ ]+ +[^ ]+ +//;s/ - .*$//' \
       -e 'q' \
       "$BASE/scripts/smlsharp/rpm/smlsharp.spec" \
 )
