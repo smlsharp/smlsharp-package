@@ -405,6 +405,12 @@ if [ -n "$OS_LIST" ]; then
   if [ ! -f "$BUILD/deb_build_repository.tar" ]; then
     run_buildsmlsharp_with_gpgkey debian-sid sh /scripts/deb_build_repository.sh
   fi
+
+  #### remove old package indices
+  $TAR -tf "$BUILD/deb_build_repository.tar" \
+  | sed -E '/\/(InRelease|(Packages|Sources)(\.xz)?)$/!d' \
+  | while read i; do rm -f "$i"; done
+
   $TAR -xf "$BUILD/deb_build_repository.tar"
 fi
 
