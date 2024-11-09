@@ -26,7 +26,8 @@ SMLSHARP_DEBVERSION=4.0.0+git20211227.5af5945b-2
 
 . "$BASE/scripts/os_codename.sh"
 
-: ${TAR:=tar --skip-old-files}
+#### GNU tar is required
+: ${TAR:=tar}
 
 need_build () {
   case "$BUILD_PACKAGE:$BUILD_TARGET" in
@@ -152,7 +153,8 @@ build_massivethreads_deb () {
       :
       run_buildsmlsharp '' sh /scripts/massivethreads/deb/build.sh
     elif need_build smlsharp; then
-      $TAR -C "$REPOS/$OS_NAME/pool/l/libmassivethreads" \
+      $TAR --skip-old-files \
+           -C "$REPOS/$OS_NAME/pool/l/libmassivethreads" \
            -cf "$BUILD/massivethreads-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" \
            "libmassivethreads0-${MVTH_FULL_VERSION}_${OS_ARCH}.deb" \
            "libmassivethreads-dev-${MVTH_FULL_VERSION}_${OS_ARCH}.deb"
@@ -190,12 +192,14 @@ for OS_VERSION in sid 12 11; do
 
   if need_build massivethreads; then
     mkdir -p "$REPOS/$OS_NAME/pool/l/libmassivethreads"
-    $TAR -C "$REPOS/$OS_NAME/pool/l/libmassivethreads" \
+    $TAR --skip-old-files \
+         -C "$REPOS/$OS_NAME/pool/l/libmassivethreads" \
          -xf "$BUILD/massivethreads-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" \
          "libmassivethreads0_${MVTH_FULL_VERSION}_${OS_ARCH}.deb" \
          "libmassivethreads-dev_${MVTH_FULL_VERSION}_${OS_ARCH}.deb"
     mkdir -p "$REPOS/$OS_NAME/pool/m/massivethreads"
-    $TAR -C "$REPOS/$OS_NAME/pool/m/massivethreads" \
+    $TAR --skip-old-files \
+         -C "$REPOS/$OS_NAME/pool/m/massivethreads" \
          -xf "$BUILD/massivethreads-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" \
          "massivethreads_${MVTH_FULL_VERSION%-*}.orig.tar.gz" \
          "massivethreads_${MVTH_FULL_VERSION}.debian.tar.xz" \
@@ -206,7 +210,8 @@ for OS_VERSION in sid 12 11; do
 
   if need_build smlsharp; then
     mkdir -p "$REPOS/$OS_NAME/pool/s/smlsharp"
-    $TAR -C "$REPOS/$OS_NAME/pool/s/smlsharp" \
+    $TAR --skip-old-files \
+         -C "$REPOS/$OS_NAME/pool/s/smlsharp" \
          -xf "$BUILD/smlsharp-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" \
          "smlsharp_${SMLSHARP_VERSION_DEB}.orig.tar.gz" \
          "smlsharp_${SMLSHARP_FULL_VERSION}.debian.tar.xz" \
@@ -228,7 +233,8 @@ for OS_VERSION in 24.04 22.04 20.04; do
 
   if need_build massivethreads; then
     mkdir -p "$REPOS/$OS_NAME/pool/m/massivethreads"
-    $TAR -C "$REPOS/$OS_NAME/pool/m/massivethreads" \
+    $TAR --skip-old-files \
+         -C "$REPOS/$OS_NAME/pool/m/massivethreads" \
          -xf "$BUILD/massivethreads-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" \
          "massivethreads_${MVTH_FULL_VERSION%-*}.orig.tar.gz" \
          "massivethreads_${MVTH_FULL_VERSION}.debian.tar.xz" \
@@ -239,7 +245,8 @@ for OS_VERSION in 24.04 22.04 20.04; do
 
   if need_build smlsharp; then
     mkdir -p "$REPOS/$OS_NAME/pool/s/smlsharp"
-    $TAR -C "$REPOS/$OS_NAME/pool/s/smlsharp" \
+    $TAR --skip-old-files \
+         -C "$REPOS/$OS_NAME/pool/s/smlsharp" \
          -xf "$BUILD/smlsharp-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" \
          "smlsharp_${SMLSHARP_VERSION_DEB}.orig.tar.gz" \
          "smlsharp_${SMLSHARP_FULL_VERSION}.debian.tar.xz" \
@@ -299,7 +306,8 @@ build_massivethreads_rpm () {
       :
       run_buildsmlsharp '' sh /scripts/massivethreads/rpm/build.sh
     elif need_build smlsharp; then
-      $TAR -C "$REPOS/$OS_NAME/$OS_VERSION/$RPM_OS_ARCH/Packages/m" \
+      $TAR --skip-old-files \
+           -C "$REPOS/$OS_NAME/$OS_VERSION/$RPM_OS_ARCH/Packages/m" \
            -cf "$BUILD/massivethreads-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" \
            "massivethreads-$MVTH_FULL_VERSION.$RPM_OS_ARCH.rpm" \
            "massivethreads-devel-$MVTH_FULL_VERSION.$RPM_OS_ARCH.rpm"
@@ -349,7 +357,8 @@ for NAME_VERSION in fedora:rawhide almalinux:9 almalinux:8; do
   if need_build massivethreads; then
     mkdir -p "$REPOS/$OS_NAME/$OS_VERSION/$RPM_OS_ARCH/Packages/m"
     mkdir -p "$REPOS/$OS_NAME/$OS_VERSION/source/Packages/m"
-    $TAR -C "$REPOS/$OS_NAME/$OS_VERSION/$RPM_OS_ARCH/Packages/m" \
+    $TAR --skip-old-files \
+         -C "$REPOS/$OS_NAME/$OS_VERSION/$RPM_OS_ARCH/Packages/m" \
          -xf "$BUILD/massivethreads-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" \
          "massivethreads-$MVTH_FULL_VERSION.$RPM_OS_ARCH.rpm" \
          "massivethreads-doc-$MVTH_FULL_VERSION.noarch.rpm" \
@@ -357,7 +366,8 @@ for NAME_VERSION in fedora:rawhide almalinux:9 almalinux:8; do
          "massivethreads-dl-$MVTH_FULL_VERSION.$RPM_OS_ARCH.rpm" \
          "massivethreads-dr-$MVTH_FULL_VERSION.$RPM_OS_ARCH.rpm" \
          "massivethreads-ld-$MVTH_FULL_VERSION.$RPM_OS_ARCH.rpm"
-    $TAR -C "$REPOS/$OS_NAME/$OS_VERSION/source/Packages/m" \
+    $TAR --skip-old-files \
+         -C "$REPOS/$OS_NAME/$OS_VERSION/source/Packages/m" \
          -xf "$BUILD/massivethreads-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" \
          "massivethreads-$MVTH_FULL_VERSION.src.rpm"
   fi
@@ -365,13 +375,15 @@ for NAME_VERSION in fedora:rawhide almalinux:9 almalinux:8; do
   if need_build smlsharp; then
     mkdir -p "$REPOS/$OS_NAME/$OS_VERSION/$RPM_OS_ARCH/Packages/s"
     mkdir -p "$REPOS/$OS_NAME/$OS_VERSION/source/Packages/s"
-    $TAR -C "$REPOS/$OS_NAME/$OS_VERSION/$RPM_OS_ARCH/Packages/s" \
+    $TAR --skip-old-files \
+         -C "$REPOS/$OS_NAME/$OS_VERSION/$RPM_OS_ARCH/Packages/s" \
          -xf "$BUILD/smlsharp-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" \
          "smlsharp-$SMLSHARP_FULL_VERSION.$RPM_OS_ARCH.rpm" \
          "smlsharp-smlformat-$SMLSHARP_FULL_VERSION.$RPM_OS_ARCH.rpm" \
          "smlsharp-smllex-$SMLSHARP_FULL_VERSION.$RPM_OS_ARCH.rpm" \
          "smlsharp-smlyacc-$SMLSHARP_FULL_VERSION.$RPM_OS_ARCH.rpm"
-    $TAR -C "$REPOS/$OS_NAME/$OS_VERSION/source/Packages/s" \
+    $TAR --skip-old-files \
+         -C "$REPOS/$OS_NAME/$OS_VERSION/source/Packages/s" \
          -xf "$BUILD/smlsharp-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" \
          "smlsharp-$SMLSHARP_FULL_VERSION.src.rpm"
   fi
@@ -385,7 +397,8 @@ for NAME_VERSION in fedora:rawhide almalinux:8; do
 
   if need_build smlsharp-release; then
     mkdir -p "$REPOS/$OS_NAME"
-    $TAR -C "$REPOS/$OS_NAME" \
+    $TAR --skip-old-files \
+         -C "$REPOS/$OS_NAME" \
          -xf "$BUILD/smlsharprelease-$OS_NAME-$OS_VERSION.tar" \
          "smlsharp-release-$OS_NAME-$SMLREL_FULL_VERSION.noarch.rpm" \
          "smlsharp-release-$OS_NAME-$SMLREL_FULL_VERSION.src.rpm"
@@ -487,17 +500,19 @@ if [ " $(uname -s)" = ' Darwin' ]; then
 
   build_massivethreads_mac
   build_smlsharp_mac
-  
+
   if need_build massivethreads; then
     mkdir -p "$REPOS/homebrew"
-    $TAR -C "$REPOS/homebrew" \
+    $TAR --skip-old-files \
+         -C "$REPOS/homebrew" \
          -xf "$BUILD/massivethreads-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" \
          "massivethreads-$MVTH_BOTTLE_SUFFIX"
   fi
 
   if need_build smlsharp; then
     mkdir -p "$REPOS/homebrew"
-    $TAR -C "$REPOS/homebrew" \
+    $TAR --skip-old-files \
+         -C "$REPOS/homebrew" \
          -xf "$BUILD/smlsharp-$OS_NAME-$OS_VERSION-$OS_ARCH.tar" \
          "smlsharp-$SMLSHARP_BOTTLE_SUFFIX"
   fi
