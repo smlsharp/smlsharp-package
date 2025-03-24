@@ -40,7 +40,7 @@ need_build () {
 }
 
 download () {
-  curl -L -o "$1" "$2"
+  curl -f -L -o "$1" "$2"
   hash=$(sha256sum "$1")
   if [ " ${hash%% *}" != " $3" ]; then
     rm -f "$1"
