@@ -19,8 +19,8 @@ BUILD_TARGET=$2
 . "$BASE/scripts/smlsharp/release.sh"
 
 #### along with the official distributions
-MVTH_DEBVERSION=1.00-4
-SMLSHARP_DEBVERSION=4.0.0+git20211227.5af5945b-2
+MVTH_DEBVERSION=1.02-4
+SMLSHARP_DEBVERSION=4.1.0-1
 
 # -------- utilities --------
 

@@ -40,38 +40,6 @@ diff -ruN debian.orig/install debian/install
 +src/ml-yacc/COPYRIGHT usr/share/doc/smlsharp/smlyacc
 +src/ml-yacc/README usr/share/doc/smlsharp/smlyacc
 +src/ml-yacc/README.smlsharp usr/share/doc/smlsharp/smlyacc
-diff -ruN debian.orig/patches/0001-Add-support-LLVM-14.0.patch debian/patches/0001-Add-support-LLVM-14.0.patch
---- debian.orig/patches/0001-Add-support-LLVM-14.0.patch	2022-08-04 15:19:35.000000000 +0900
-+++ debian/patches/0001-Add-support-LLVM-14.0.patch	1970-01-01 09:00:00.000000000 +0900
-@@ -1,23 +0,0 @@
--From 67f3dcb582366ea4344dc579196b5fa6a3e3274b Mon Sep 17 00:00:00 2001
--From: Nobuhiro Iwamatsu <iwamatsu@debian.org>
--Date: Thu, 4 Aug 2022 14:47:11 +0900
--Subject: [PATCH] Add support LLVM 14.0
--
--Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@debian.org>
-----
-- configure | 2 +-
-- 1 file changed, 1 insertion(+), 1 deletion(-)
--
--diff --git a/configure.ac b/configure.ac
--index b4f830d..499d31a 100644
----- a/configure.ac
--+++ b/configure.ac
--@@ -218,7 +218,7 @@ AC_MSG_CHECKING([for LLVM compatibility])
-- LLVM_VERSION=`echo "$LLVM_VERSION" | sed 's/\.[[0-9]]*$//'`
-- AC_SUBST(LLVM_VERSION)
-- case "$LLVM_VERSION" in
---  3.9|[[4-9]].0|1[[0-1]].0|11.1|12.0|13.0)
--+  3.9|[[4-9]].0|1[[0-1]].0|11.1|12.0|13.0|14.0)
--     AC_MSG_RESULT(yes)
--     ;;
--   *)
-diff -ruN debian.orig/patches/series debian/patches/series
---- debian.orig/patches/series	2022-08-04 15:19:35.000000000 +0900
-+++ debian/patches/series	1970-01-01 09:00:00.000000000 +0900
-@@ -1 +0,0 @@
--0001-Add-support-LLVM-14.0.patch
 diff -ruN debian.orig/rules debian/rules
 --- debian.orig/rules	2022-08-04 15:19:35.000000000 +0900
 +++ debian/rules	2024-09-24 04:26:53.703535346 +0900

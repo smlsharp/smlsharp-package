@@ -1,12 +1,3 @@
-diff -ruN debian.orig/patches/series debian/patches/series
---- debian.orig/patches/series	2022-01-09 13:38:14.000000000 +0900
-+++ debian/patches/series	2024-11-09 01:03:27.497595436 +0900
-@@ -1,5 +1,2 @@
--0001-Add-initial-support-for-aarch64-linux-and-macOS.patch
--0002-Add-_sync_synchronize-to-avoid-assertion-failure.patch
--0003-Prevent-myth_get_current_env-from-being-inlined-on-a.patch
- 0004-tests-Fix-build-on-x86_32.patch
- 0005-Add-support-sparc64.patch
 diff -ruN debian.orig/rules debian/rules
 --- debian.orig/rules	2022-01-09 13:38:14.000000000 +0900
 +++ debian/rules	2024-11-09 01:03:50.609697744 +0900
