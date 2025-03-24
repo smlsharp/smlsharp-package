@@ -1,4 +1,4 @@
-FROM almalinux:8
+FROM docker.io/almalinux:8
 RUN dnf -y update \
     && dnf install -y \
       rpm-build \

@@ -1,4 +1,4 @@
-FROM debian:bookworm
+FROM docker.io/debian:bookworm
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
     && DEBIAN_FRONTEND=noninteractive \

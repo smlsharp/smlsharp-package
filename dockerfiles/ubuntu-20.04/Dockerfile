@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM docker.io/ubuntu:focal
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
     && DEBIAN_FRONTEND=noninteractive \

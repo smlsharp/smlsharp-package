@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM docker.io/ubuntu:jammy
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
     && DEBIAN_FRONTEND=noninteractive \

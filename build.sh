@@ -55,7 +55,7 @@ download () {
 load_buildsmlsharp () {
   IMAGE_TAG=${1:-$OS_NAME-${OS_VERSION}}
   IMAGE_FILE="buildsmlsharp_${IMAGE_TAG}_${OS_ARCH}.tar"
-  IMAGE_ID="buildsmlsharp:$IMAGE_TAG"
+  IMAGE_ID="localhost/buildsmlsharp:$IMAGE_TAG"
   if [ ! -f "$BUILD/$IMAGE_FILE" ]; then
     (
       cd "$BASE/dockerfiles/$IMAGE_TAG"
@@ -68,7 +68,7 @@ load_buildsmlsharp () {
 }
 
 remove_buildsmlsharp () {
-  $PODMAN rmi "buildsmlsharp:$IMAGE_TAG" 2> /dev/null || :
+  $PODMAN rmi "localhost/buildsmlsharp:$IMAGE_TAG" 2> /dev/null || :
 }
 
 run_buildsmlsharp () {
@@ -88,7 +88,7 @@ run_buildsmlsharp () {
           -e "OS_VERSION=$OS_VERSION" \
           -e "OS_ARCH=$OS_ARCH" \
           -e "RPM_OS_ARCH=$RPM_OS_ARCH" \
-          "buildsmlsharp:$IMAGE_TAG" \
+          "localhost/buildsmlsharp:$IMAGE_TAG" \
           "$@"
 }
 
@@ -104,7 +104,7 @@ run_buildsmlsharp_with_gpgkey () {
             --tmpfs /root/.gnupg:size=1m,mode=700 \
             -w /root \
             -e "OS_LIST=$OS_LIST" \
-            buildsmlsharp:"$IMAGE_TAG" \
+            localhost/buildsmlsharp:"$IMAGE_TAG" \
             "$@"
 }
 

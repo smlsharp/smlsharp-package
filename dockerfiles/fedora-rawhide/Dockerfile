@@ -1,4 +1,4 @@
-FROM fedora:rawhide
+FROM docker.io/fedora:rawhide
 RUN dnf -y update \
     && dnf install -y \
       rpm-build \

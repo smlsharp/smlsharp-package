@@ -1,4 +1,4 @@
-FROM debian:sid
+FROM docker.io/debian:sid
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
     && DEBIAN_FRONTEND=noninteractive \

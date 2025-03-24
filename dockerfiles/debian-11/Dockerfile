@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM docker.io/debian:bullseye
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
     && DEBIAN_FRONTEND=noninteractive \
