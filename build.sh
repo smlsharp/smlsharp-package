@@ -262,9 +262,10 @@ rawhide_release () {
   if [ -f "$BUILD/rawhide-release.txt" ]; then
     RPM_RELEASE=$(cat "$BUILD/rawhide-release.txt")
   else
+    load_buildsmlsharp fedora-rawhide
     RPM_RELEASE=$( \
       $PODMAN run --rm --platform="linux/$OS_ARCH" --sig-proxy=false \
-                  localhost/buildsmlsharp:fedora-rawhide \
+                  "localhost/buildsmlsharp:$IMAGE_TAG" \
                   cat /etc/system-release \
     )
     RPM_RELEASE=$(perl -e '$ARGV[0]=~/(\d+)/;print $1' "$RPM_RELEASE")
