@@ -1,10 +1,10 @@
 Name: smlsharp
-Version: 4.1.0
-Release: 0%{?dist}
+Version: 4.2.0
+Release: 1%{?dist}
 Summary: Standard ML compiler with practical extensions
 License: MIT
 URL: https://smlsharp.github.io/
-Source0: https://github.com/smlsharp/smlsharp/releases/download/v4.1.0/smlsharp-4.1.0.tar.gz
+Source0: https://github.com/smlsharp/smlsharp/releases/download/v4.2.0/smlsharp-4.2.0.tar.gz
 Group: Development/Languages
 ExclusiveArch: x86_64
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -45,7 +45,7 @@ Group: Development/Languages
 Parser generator for SML#
 
 %prep
-%setup -q -n %{name}-4.1.0
+%setup -q -n %{name}-4.2.0
 cp -p src/smlnj/LICENSE LICENSE_smlnj
 cp -p src/smlnj-lib/LICENSE LICENSE_smlnj-lib
 for i in src/smlformat/doc/OVERVIEW_en.txt src/smlformat/doc/OVERVIEW_ja.txt; do
@@ -104,6 +104,9 @@ sed -i '/^LDFLAGS /s/=.*$/=/' $RPM_BUILD_ROOT%{_libdir}/smlsharp/config.mk
 %{_mandir}/man1/smlyacc.1.gz
 
 %changelog
+* Mon Mar 24 2025 Katsuhiro Ueno <katsu@ie.niigata-u.ac.jp> - 4.2.0-1
+- New upstream release.
+
 * Fri Nov  8 2024 Katsuhiro Ueno <katsu@ie.niigata-u.ac.jp> - 4.1.0-0
 - New upstream release.
 
