@@ -264,7 +264,7 @@ rawhide_release () {
   else
     RPM_RELEASE=$( \
       $PODMAN run --rm --platform="linux/$OS_ARCH" --sig-proxy=false \
-                  buildsmlsharp:fedora-rawhide \
+                  localhost/buildsmlsharp:fedora-rawhide \
                   cat /etc/system-release \
     )
     RPM_RELEASE=$(perl -e '$ARGV[0]=~/(\d+)/;print $1' "$RPM_RELEASE")
