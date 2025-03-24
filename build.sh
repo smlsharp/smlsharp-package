@@ -41,8 +41,8 @@ need_build () {
 
 download () {
   curl -L -o "$1" "$2"
-  hash=$(openssl dgst -sha256 "$1")
-  if [ "${hash#*=}" != " $3" ]; then
+  hash=$(sha256sum "$1")
+  if [ " ${hash%% *}" != " $3" ]; then
     rm -f "$1"
     exit 1
   fi
