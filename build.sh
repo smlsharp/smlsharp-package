@@ -225,7 +225,7 @@ done
 # ------- Ubuntu --------
 
 OS_NAME=ubuntu
-for OS_VERSION in 24.04 22.04 20.04; do
+for OS_VERSION in 24.04 22.04; do
   DEB_SUFFIX="v1ppa1~$OS_NAME$OS_VERSION.1"
 
   build_massivethreads_deb
