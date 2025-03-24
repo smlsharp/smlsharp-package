@@ -8,10 +8,10 @@ Source0: https://github.com/smlsharp/smlsharp/releases/download/v4.1.0/smlsharp-
 Group: Development/Languages
 ExclusiveArch: x86_64
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires: llvm18-devel
+BuildRequires: llvm19-devel
 BuildRequires: massivethreads-devel
 BuildRequires: gmp-devel
-Requires: llvm18
+Requires: llvm19
 Requires: massivethreads-devel
 Requires: gmp-devel
 Requires: gcc
@@ -54,7 +54,7 @@ done
 
 %build
 set -ex
-%configure --with-llvm=/usr/lib64/llvm18
+%configure --with-llvm=/usr/lib64/llvm19
 make %{?_smp_mflags} stage
 make %{?_smp_mflags} all
 

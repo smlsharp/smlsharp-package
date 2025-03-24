@@ -5,11 +5,11 @@ RUN dnf -y update \
       rpm-sign \
       rpmlint \
       createrepo \
-      llvm18-devel \
+      llvm19-devel \
       make \
       gcc-c++ \
       sqlite-devel \
       gmp-devel \
     && dnf clean all \
     && rm -rf /var/cache/dnf
-ENV LLVM_VERSION 18
+ENV LLVM_VERSION 19

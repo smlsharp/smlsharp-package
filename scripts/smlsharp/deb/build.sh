@@ -43,7 +43,7 @@ case "$OS_NAME:$OS_VERSION" in
 esac
 
 #### downgrade LLVM
-sed -i "s/llvm-18/llvm-$LLVM_VERSION/" "$DEBDIR/control" "$DEBDIR/rules"
+sed -i "s/llvm-19/llvm-$LLVM_VERSION/" "$DEBDIR/control" "$DEBDIR/rules"
 
 #### add a new entry to changelog if necessary
 if [ " $OS_NAME:$OS_VERSION" != ' debian:sid' ]; then

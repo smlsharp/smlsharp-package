@@ -6,7 +6,7 @@ diff -ruN debian.orig/control debian/control
  Build-Depends: debhelper-compat (= 13),
                 libgmp-dev,
 -               llvm-dev,
-+               llvm-18-dev,
++               llvm-19-dev,
                 libmassivethreads-dev
  Standards-Version: 4.5.1
  Rules-Requires-Root: no
@@ -16,7 +16,7 @@ diff -ruN debian.orig/control debian/control
  Architecture: amd64
 -Depends: ${shlibs:Depends}, ${misc:Depends}
 +Depends: ${shlibs:Depends}, ${misc:Depends},
-+         gcc, llvm-18, libc-dev, libgmp-dev, libmassivethreads-dev
++         gcc, llvm-19, libc-dev, libgmp-dev, libmassivethreads-dev
  Description: Standard ML compiler with practical extensions
   SML# is a variant of Standard ML programming
   language with several practical extentions,
@@ -84,7 +84,7 @@ diff -ruN debian.orig/rules debian/rules
  override_dh_auto_configure:
 -	CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
 -	./configure --prefix=/usr
-+	dh_auto_configure -- --with-llvm=/usr/lib/llvm-18
++	dh_auto_configure -- --with-llvm=/usr/lib/llvm-19
  
  override_dh_auto_build:
  	dh_auto_build -- stage

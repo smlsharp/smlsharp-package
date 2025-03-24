@@ -10,10 +10,10 @@ RUN apt-get update \
       debhelper \
       libdistro-info-perl \
       gnupg \
-      llvm-16-dev \
+      llvm-19-dev \
       libsqlite3-dev \
       libgmp-dev \
       zlib1g-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-ENV LLVM_VERSION 16
+ENV LLVM_VERSION 19

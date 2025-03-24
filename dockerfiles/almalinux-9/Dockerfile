@@ -12,4 +12,4 @@ RUN dnf -y update \
       gmp-devel \
     && dnf clean all \
     && rm -rf /var/cache/dnf
-ENV LLVM_VERSION 17
+ENV LLVM_VERSION 18
