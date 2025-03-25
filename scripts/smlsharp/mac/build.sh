@@ -32,7 +32,8 @@ $BREW install massivethreads
 unset HOMEBREW_CACHE
 
 #### manipulate formula to build a bottle in the standard cellar
-(cd "$FORMULADIR" && patch -p0) < "$BASE/scripts/smlsharp/mac/smlsharp.rb.diff"
+(cd "$FORMULADIR" && patch -p0) \
+  < "$BASE/scripts/smlsharp/mac/smlsharp.rb.$OS_ARCH.diff"
 
 #### build smlsharp
 $BREW install -v --only-dependencies smlsharp/smlsharp/smlsharp
@@ -40,9 +41,9 @@ $BREW install -v --build-bottle smlsharp/smlsharp/smlsharp
 
 #### revert the formula to the original
 (cd "$FORMULADIR" && patch -p0 -R) \
-  < "$BASE/scripts/smlsharp/mac/smlsharp.rb.diff"
+  < "$BASE/scripts/smlsharp/mac/smlsharp.rb.$OS_ARCH.diff"
 (cd "$HOMEBREW_PREFIX/opt/smlsharp/.brew" && patch -p0 -R) \
-  < "$BASE/scripts/smlsharp/mac/smlsharp.rb.diff"
+  < "$BASE/scripts/smlsharp/mac/smlsharp.rb.$OS_ARCH.diff"
 
 #### create the bottle
 (
