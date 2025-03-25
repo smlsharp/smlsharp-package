@@ -20,18 +20,19 @@ export HOMEBREW_NO_INSTALL_CLEANUP=1
 export HOMEBREW_NO_ANALYTICS=1
 PATH=/usr/bin:/bin
 
-if [ -d "$BUILD/homebrew" ]; then
-  eval "$("$BUILD/homebrew/bin/brew" shellenv)"
+if [ -d "$BUILD/homebrew-$OS_ARCH" ]; then
+  eval "$("$BUILD/homebrew-$OS_ARCH/bin/brew" shellenv)"
 else
-  git clone https://github.com/Homebrew/brew.git "$BUILD/homebrew"
-  eval "$("$BUILD/homebrew/bin/brew" shellenv)"
+  git clone --depth=1 https://github.com/Homebrew/brew.git \
+      "$BUILD/homebrew-$OS_ARCH"
+  eval "$("$BUILD/homebrew-$OS_ARCH/bin/brew" shellenv)"
   $BREW update --force
 fi
 
 #### tap homebrew-smlsharp repository
 $BREW tap smlsharp/smlsharp "$(realpath "$BASE/homebrew-smlsharp")"
 (
-  cd "$BUILD/homebrew/Library/Taps/smlsharp/homebrew-smlsharp/.git"
+  cd "$HOMEBREW_PREFIX/Library/Taps/smlsharp/homebrew-smlsharp/.git"
   git config --local commit.gpgsign false
 )
 

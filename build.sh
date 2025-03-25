@@ -518,9 +518,10 @@ if [ " $(uname -s)" = ' Darwin' ]; then
          "smlsharp-$SMLSHARP_BOTTLE_SUFFIX"
   fi
 
-  if [ -d "$BUILD/homebrew/Library/Taps/smlsharp/homebrew-smlsharp" ]; then
-    TAP=$(realpath "$BUILD/homebrew/Library/Taps/smlsharp/homebrew-smlsharp")
-    (cd "$BASE/homebrew-smlsharp" && git pull "$TAP")
+  brewdir="$BUILD/homebrew-$OS_ARCH"
+  if [ -d "$brewdir/Library/Taps/smlsharp/homebrew-smlsharp" ]; then
+    tap=$(realpath "$brewdir/Library/Taps/smlsharp/homebrew-smlsharp")
+    (cd "$BASE/homebrew-smlsharp" && git pull "$tap")
   fi
 fi
 
