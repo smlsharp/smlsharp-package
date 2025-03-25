@@ -9,7 +9,13 @@ if [ ! -d "$BUILD" ]; then
   chmod 1777 "$BUILD"
 fi
 
-: ${OS_ARCH:=amd64}  # amd64 or aarch64
+if [ -z "$OS_ARCH" ]; then
+  case "$(uname -m)" in
+    arm64) OS_ARCH=aarch64 ;;
+    *) OS_ARCH=amd64 ;;
+  esac
+fi
+
 BUILD_PACKAGE=$1
 BUILD_TARGET=$2
 
