@@ -2,7 +2,7 @@
 +++ smlsharp.rb	2024-09-25 13:47:57
 @@ -18,6 +18,8 @@
    def install
-     opt_llvm = Formula["llvm@18"].opt_prefix.sub(/llvm\z/, "llvm@18")
+     opt_llvm = Formula["llvm@19"].opt_prefix.sub(/llvm\z/, "llvm@19")
      opt_llvm_bin = opt_llvm/"bin"
 +    opt_llvm_bin = Pathname.new("/usr/local#{opt_llvm_bin.to_s[HOMEBREW_PREFIX.to_s.size..-1]}") ####
 +    inreplace("src/config/main/Version.sml.in") { |s| s.sub! /%LIBDIR_SMLSHARP%/, "/usr/local#{lib.to_s[HOMEBREW_PREFIX.to_s.size..-1]}/smlsharp" } ####

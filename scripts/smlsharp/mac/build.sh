@@ -35,6 +35,7 @@ unset HOMEBREW_CACHE
 (cd "$FORMULADIR" && patch -p0) < "$BASE/scripts/smlsharp/mac/smlsharp.rb.diff"
 
 #### build smlsharp
+$BREW install -v --only-dependencies smlsharp/smlsharp/smlsharp
 $BREW install -v --build-bottle smlsharp/smlsharp/smlsharp
 
 #### revert the formula to the original
